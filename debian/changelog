@@ -1,0 +1,5 @@
+customdeb (0.1) UNRELEASED; urgency=low
+
+  * Initial release.
+
+ -- Joachim Breitner <nomeata@debian.org>  Sun, 27 Jan 2008 21:40:13 +0100

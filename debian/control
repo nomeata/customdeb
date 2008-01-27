@@ -1,0 +1,20 @@
+Source: customdeb
+Section: admin
+Priority: optional
+Maintainer: Joachim Breitner <nomeata@debian.org>
+Build-Depends: debhelper (>= 4.0.0)
+Standards-Version: 3.7.3
+XS-Vcs-Darcs: http://darcs.nomeata.de/customdeb
+XS-Vcs-Browser: http://darcs.nomeata.de/cgi-bin/darcsweb.cgi?r=customdeb;a=summary
+
+Package: customdeb
+Architecture: all
+Depends: ${perl:Depends}
+Description: Modfies binary debian package.
+ customdeb will modify binary debian packages based on
+ information given in a simple file. It can
+   * Add or replace files
+   * Change permissions of files
+ It can be used to distribute packages with local changes
+ (configuration, fixes) locally, and is not meant to create
+ packages for the official debian archive.
