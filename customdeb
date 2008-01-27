@@ -203,6 +203,12 @@ for my $req (qw/Package/) {
 	}
 }
 
+for my $field (keys %$modheader) {
+	if (not grep {$_ eq $field} qw/Package Mod-Version Changes Files/) {
+		error "Unknown field in header stanza: $field\n";
+	}
+}
+
 my $package = $modheader->{'Package'};
 print "Working on package $package.\n";
 
@@ -265,6 +271,12 @@ for my $mod (@mods) {
 	for my $req (qw/File/) {
 		if (! exists $mod->{$req}) {
 			error "Missing required field \"$req\" in modification stanza.\n";
+		}
+	}
+
+	for my $field (keys %$mod) {
+		if (not grep {$_ eq $field} qw/File Owner Permission Content/) {
+			error "Unknown field in modification stanza: $field\n";
 		}
 	}
 
