@@ -109,6 +109,14 @@ The user and group to set, separated by a space.
 
 =back
 
+=head1 SEE ALSO
+
+You can find example files for B<customdeb> in F</usr/share/doc/customdeb/examples/>.
+
+=head1 AUTHOR
+
+Joachim Breitner <nomeata@debian.org>
+
 =cut
 
 use warnings;
