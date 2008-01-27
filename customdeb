@@ -235,6 +235,9 @@ run (qw/dpkg-deb -e/, $packagefile, "$workdir/DEBIAN");
 chdir $workdir or die;
 my $control = $parser->parse_file('./DEBIAN/control', { useTieIxHash => 'true' });
 
+# Check package name
+$package eq $control->[0]->{Package} or error ("You wanted to modify $package, but I got a package for ".$control->[0]->{Package}."!\n");
+
 # Bump version number
 my $modversion = "1";
 $modversion = $modheader->{"Mod-Version"} if exists $modheader->{"Mod-Version"};
