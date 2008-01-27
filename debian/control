@@ -10,11 +10,11 @@ XS-Vcs-Browser: http://darcs.nomeata.de/cgi-bin/darcsweb.cgi?r=customdeb;a=summa
 Package: customdeb
 Architecture: all
 Depends: ${perl:Depends}
-Description: Modfies binary debian package.
- customdeb will modify binary debian packages based on
+Description: Modfies binary Debian package
+ customdeb will modify binary Debian packages based on
  information given in a simple file. It can
    * Add or replace files
    * Change permissions of files
  It can be used to distribute packages with local changes
  (configuration, fixes) locally, and is not meant to create
- packages for the official debian archive.
+ packages for the official Debian archive.
