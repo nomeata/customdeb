@@ -128,12 +128,21 @@ use File::Basename;
 use File::Temp qw/tempdir/;
 use File::Copy;
 use File::Copy::Recursive qw(rcopy);
+use Debian::Debhelper::Dh_Lib qw(escape_shell);
 use Parse::DebianChangelog;
 use Cwd;
+
 
 sub error ($) {
 	print @_;
 	exit 1;
+}
+
+sub run {
+	my $ret = system @_;
+	if ($ret != 0) {
+		error ("Failed to run ".escape_shell(@_)."\n")
+	}
 }
 
 # We need to run as fakeroot
@@ -198,7 +207,7 @@ print "Working on package $package.\n";
 unless (defined $packagefile) {
 	my $dldir = tempdir("dl-XXXX", DIR => $basedir, CLEANUP => 1);
 	chdir $dldir or die;
-	system (qw/dget --path/, "$basedir/dlcache", $package);
+	run (qw/dget --path/, "$basedir/dlcache", $package);
 	my ($origfile) = glob "*";
 	print "Downloaded file $origfile\n";
 	move($origfile, "$basedir/dlcache");
@@ -208,8 +217,8 @@ unless (defined $packagefile) {
 # Extract package
 chdir $basedir or die;
 my $workdir = tempdir("work-XXXX", DIR => $basedir, CLEANUP => 1);
-system (qw/dpkg-deb -x/, $packagefile, $workdir);
-system (qw/dpkg-deb -e/, $packagefile, "$workdir/DEBIAN");
+run (qw/dpkg-deb -x/, $packagefile, $workdir);
+run (qw/dpkg-deb -e/, $packagefile, "$workdir/DEBIAN");
 
 #
 # Do the modifications here
@@ -233,8 +242,8 @@ if (! -e "$changelogfile.gz") {
 	error "No changelog found in $changelogfile.gz\n"
 }
 print "Modifying changelog.\n";
-system ("gunzip", "$changelogfile.gz");
-system (qw/dch -v/, $version, qw/-D UNRELEASED -c/, $changelogfile, $logmessage);
+run ("gunzip", "$changelogfile.gz");
+run (qw/dch -v/, $version, qw/-D UNRELEASED -c/, $changelogfile, $logmessage);
 
 # Copy Files
 if (exists $modheader->{Files}) {
@@ -323,14 +332,14 @@ $control->[0]->{Version} = $version;
 $parser->write_file("./DEBIAN/control", $control, { clobberFile => 'true' });
 
 # Re-Pack Changelog
-system ("gzip", "-9", $changelogfile);
+run ("gzip", "-9", $changelogfile);
 
 # Update md5sums
 # (stolen from /usr/bin/dh_md5sums)
 print "Updateing md5sums file\n";
-system("find . -type f ! -regex '.*/DEBIAN/.*' -printf '%P\\0' | xargs -r0 md5sum > DEBIAN/md5sums");
+run("find . -type f ! -regex '.*/DEBIAN/.*' -printf '%P\\0' | xargs -r0 md5sum > DEBIAN/md5sums");
 
 # Re-build package
 chdir $basedir or die;
-system (qw/dpkg-deb -b/, $workdir, "output");
+run (qw/dpkg-deb -b/, $workdir, "output");
 
