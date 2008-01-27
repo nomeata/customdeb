@@ -9,7 +9,7 @@ XS-Vcs-Browser: http://darcs.nomeata.de/cgi-bin/darcsweb.cgi?r=customdeb;a=summa
 
 Package: customdeb
 Architecture: all
-Depends: ${perl:Depends}, libparse-debcontrol-perl, libfile-temp-perl, libfile-copy-recursive-perl, debhelper, libparse-debianchangelog-perl, debian-goodies, devscripts
+Depends: ${perl:Depends}, libparse-debcontrol-perl, libfile-temp-perl, libfile-copy-recursive-perl, debhelper, libparse-debianchangelog-perl, devscripts
 Description: Modfies binary Debian package
  customdeb will modify binary Debian packages based on
  information given in a simple file. It can
