@@ -1,5 +1,8 @@
 customdeb (0.1) UNRELEASED; urgency=low
 
   * Initial release.
+  
+  This upload was sponsored by itomig (http://www.itomig.de/) and the city of
+  Böblingen, Germany.
 
  -- Joachim Breitner <nomeata@debian.org>  Sun, 27 Jan 2008 21:40:13 +0100
