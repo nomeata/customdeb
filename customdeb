@@ -40,7 +40,7 @@ however, be deleted without problems.
 =head2 FILE FORMAT
 
 The cdeb file should be in a RFC822-like format, commonly used in Debian for
-almost everything: Ffield names and values
+almost everything: Field names and values
 are separated by a colon (C<:>). Lines starting with a blank are just appended
 to their previous line's value. Lines that contain only a period (C<.>) in them
 will become an empty line in the output.  Empty lines are ignored. 
