@@ -69,7 +69,7 @@ Default: None
 
 =back
 
-=head2 FILE STANZA FIELS
+=head2 FILE STANZA FIELDS
 
 This describes changes to a file in the package.
 
