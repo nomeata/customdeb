@@ -1,0 +1,14 @@
+Package: cups-pdf
+Mod-Version: 2
+Changes:
+ * Adjust backend permission to run as root.
+ * Customize configuration
+Files: cups-pdf
+
+File: /usr/lib/cups/backend/cups-pdf
+Owner: root lpadmin 
+Permission: 4750
+
+File: /etc/cups/cups-pdf.conf
+Content:
+ Huhu
