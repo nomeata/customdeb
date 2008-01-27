@@ -11,14 +11,12 @@
 
 
 build:	
-	pod2man customdeb customdeb.1debhelper/dh_metainit > dh_metainit.1
+	pod2man customdeb > customdeb.1
 
 clean:
 	dh_testdir
 	dh_testroot
-	rm -f dh_metainit.1
-	rm -f update-metainit.1
-	
+	rm -f customdeb.1
 	dh_clean 
 
 install: build
