@@ -176,7 +176,10 @@ if ($modfile =~ /^\//) {
 
 my $packagefile;
 if (@ARGV >= 1) {
-	$packagefile = $modfiledir . "/" . shift @ARGV;
+	$packagefile = shift @ARGV;
+	if (not $packagefile =~ /^\//) {
+		$packagefile = $basedir . "/" . $packagefile;
+	}
 }
 
 
